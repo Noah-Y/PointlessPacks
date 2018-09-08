@@ -134,6 +134,9 @@ void game::OpeningPackLoop()
 {
 	while (openingPack)
 	{
+		SDL_Rect cheappackpos = cheappack.GetPos();
+		SDL_Rect normalpackpos = normalpack.GetPos();
+		SDL_Rect richpackpos = richpack.GetPos();
 		GetMousePos();
 		while (SDL_PollEvent(&ev))
 		{
@@ -150,13 +153,34 @@ void game::OpeningPackLoop()
 					switch (packType)
 					{
 					case 1:
-						cheappack.Opened++;
+						if (cheappackpos.y < 500 && cheappack.Opened < 1)
+						{
+							cheappack.Opened = 1;
+						}
+						if (cheappackpos.y > 500 && cheappack.Opened > 0)
+						{
+							cheappack.Opened++;
+						}
 						break;
 					case 2:
-						normalpack.Opened++;
+						if (normalpackpos.y < 500 && normalpack.Opened < 1)
+						{
+							normalpack.Opened = 1;
+						}
+						if (normalpackpos.y > 500 && normalpack.Opened > 0)
+						{
+							normalpack.Opened++;
+						}
 						break;
 					case 3:
-						richpack.Opened++;
+						if (richpackpos.y < 500 && richpack.Opened < 1)
+						{
+							richpack.Opened = 1;
+						}
+						if (richpackpos.y > 500 && richpack.Opened > 0)
+						{
+							richpack.Opened++;
+						}
 						break;
 					default:
 						break;
@@ -168,10 +192,14 @@ void game::OpeningPackLoop()
 		//Render
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 		SDL_RenderClear(renderer);
-
 		switch (packType)
 		{
 		case 1:
+			if (cheappack.Opened > 0 && cheappackpos.y < 600)
+			{
+				cheappackpos.y += 4;
+				cheappack.SetPos(cheappackpos.x, cheappackpos.y, cheappackpos.w, cheappackpos.h);
+			}
 			for (int num = 0; num < 5; num++)
 			{
 				if (num < cheappack.Opened)
@@ -179,10 +207,7 @@ void game::OpeningPackLoop()
 					Draw(cheappack.cards[num]);
 				}
 			}
-			if (cheappack.Opened < 1)
-			{
-				Draw(cheappack);
-			}
+			Draw(cheappack);
 			if (cheappack.Opened > 5)
 			{
 				openingPack = false;
@@ -190,6 +215,11 @@ void game::OpeningPackLoop()
 			}
 			break;
 		case 2:
+			if (normalpack.Opened > 0 && normalpackpos.y < 600)
+			{
+				normalpackpos.y += 4;
+				normalpack.SetPos(normalpackpos.x, normalpackpos.y, normalpackpos.w, normalpackpos.h);
+			}
 			for (int num = 0; num < 10; num++)
 			{
 				if (num < normalpack.Opened)
@@ -197,10 +227,7 @@ void game::OpeningPackLoop()
 					Draw(normalpack.cards[num]);
 				}
 			}
-			if (normalpack.Opened < 1)
-			{
-				Draw(normalpack);
-			}
+			Draw(normalpack);
 			if (normalpack.Opened > 10)
 			{
 				openingPack = false;
@@ -208,6 +235,11 @@ void game::OpeningPackLoop()
 			}
 			break;
 		case 3:
+			if (richpack.Opened > 0 && richpackpos.y < 600)
+			{
+				richpackpos.y += 4;
+				richpack.SetPos(richpackpos.x, richpackpos.y, richpackpos.w, richpackpos.h);
+			}
 			for (int num = 0; num < 15; num++)
 			{
 				if (num < richpack.Opened)
@@ -215,10 +247,7 @@ void game::OpeningPackLoop()
 					Draw(richpack.cards[num]);
 				}
 			}
-			if (richpack.Opened < 1)
-			{
-				Draw(richpack);
-			}
+			Draw(richpack);	
 			if (richpack.Opened > 15)
 			{
 				openingPack = false;
