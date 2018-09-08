@@ -1,16 +1,23 @@
 #pragma once
+#include "Object.h"
+#include "card.h"
+#include <iostream>
 #include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_mixer.h>
+#include <vector>
 
-class pack
+using namespace std;
+
+class pack : public Object
 {
 private:
-	int cardNum;
-	SDL_Rect pos, crop;
+	int cardAmount;
 public:
 	pack();
 	~pack();
-	void SetPos(int x, int y, int w, int h);
-	void SetCrop(int x, int y, int w, int h);
-	void SetCardNum(int num) { cardNum = num; }
+	void SetCardNum(int num) { cardAmount = num; }
+	void SetCards(SDL_Renderer *renderer);
+	vector<card> cards;
 };
 
