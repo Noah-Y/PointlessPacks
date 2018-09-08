@@ -1,7 +1,5 @@
 #include "game.h"
 
-
-
 game::game()
 {
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
@@ -82,6 +80,7 @@ void game::MenuLoop()
 						cheappack.SetCards(renderer);
 						cheappack.SetPos(212, 50, 375, 500);
 						cheappack.SetCrop(0, 0, 700, 950);
+						cheappack.Opened = 0;
 						openingPack = true;
 						packType = 1;
 					}
@@ -97,6 +96,7 @@ void game::MenuLoop()
 						normalpack.SetCards(renderer);
 						normalpack.SetPos(212, 50, 375, 500);
 						normalpack.SetCrop(0, 0, 700, 950);
+						normalpack.Opened = 0;
 						openingPack = true;
 						packType = 2;
 					}
@@ -112,6 +112,7 @@ void game::MenuLoop()
 						richpack.SetCards(renderer);
 						richpack.SetPos(212, 50, 375, 500);
 						richpack.SetCrop(0, 0, 700, 950);
+						richpack.Opened = 0;
 						openingPack = true;
 						packType = 3;
 					}
@@ -146,7 +147,20 @@ void game::OpeningPackLoop()
 			{
 				if (ev.button.button == SDL_BUTTON_LEFT)
 				{
-
+					switch (packType)
+					{
+					case 1:
+						cheappack.Opened++;
+						break;
+					case 2:
+						normalpack.Opened++;
+						break;
+					case 3:
+						richpack.Opened++;
+						break;
+					default:
+						break;
+					}
 				}
 			}
 		}
@@ -158,26 +172,59 @@ void game::OpeningPackLoop()
 		switch (packType)
 		{
 		case 1:
-			Draw(cheappack);
-			if (cheappack.cards.empty() == false)
+			for (int num = 0; num < 5; num++)
 			{
-				for (int num = 0; num < cheappack.cards.max_size(); num++)
+				if (num < cheappack.Opened)
 				{
 					Draw(cheappack.cards[num]);
 				}
 			}
+			if (cheappack.Opened < 1)
+			{
+				Draw(cheappack);
+			}
+			if (cheappack.Opened > 5)
+			{
+				openingPack = false;
+				menuUse = true;
+			}
+			break;
 		case 2:
-			Draw(normalpack);
 			for (int num = 0; num < 10; num++)
 			{
-				Draw(normalpack.cards[num]);
+				if (num < normalpack.Opened)
+				{
+					Draw(normalpack.cards[num]);
+				}
 			}
+			if (normalpack.Opened < 1)
+			{
+				Draw(normalpack);
+			}
+			if (normalpack.Opened > 10)
+			{
+				openingPack = false;
+				menuUse = true;
+			}
+			break;
 		case 3:
-			Draw(richpack);
 			for (int num = 0; num < 15; num++)
 			{
-				Draw(richpack.cards[num]);
+				if (num < richpack.Opened)
+				{
+					Draw(richpack.cards[num]);
+				}
 			}
+			if (richpack.Opened < 1)
+			{
+				Draw(richpack);
+			}
+			if (richpack.Opened > 15)
+			{
+				openingPack = false;
+				menuUse = true;
+			}
+			break;
 		default:
 			break;
 		}

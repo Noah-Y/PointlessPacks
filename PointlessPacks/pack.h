@@ -1,11 +1,11 @@
 #pragma once
+#include <cstdlib>
 #include "Object.h"
 #include "card.h"
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
-#include <vector>
 
 using namespace std;
 
@@ -18,6 +18,7 @@ public:
 	~pack();
 	void SetCardNum(int num) { cardAmount = num; }
 	void SetCards(SDL_Renderer *renderer);
-	vector<card> cards;
+	card cards[15];
+	int Opened = 0;
 };
 

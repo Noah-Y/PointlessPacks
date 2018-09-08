@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdlib.h>
+#include <math.h>
 #include "pack.h"
 #include "Object.h"
 #include <iostream>
