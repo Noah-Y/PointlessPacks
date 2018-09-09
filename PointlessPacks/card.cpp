@@ -39,6 +39,27 @@ void card::SetCardTexture(SDL_Renderer *renderer)
 	case 8:
 		SetTexture("8card.png", renderer);
 		break;
+	case 9:
+		SetTexture("9card.png", renderer);
+		break;
+	case 10:
+		SetTexture("10card.png", renderer);
+		break;
+	case 11:
+		SetTexture("11card.png", renderer);
+		break;
+	case 12:
+		SetTexture("12card.png", renderer);
+		break;
+	case 13:
+		SetTexture("13card.png", renderer);
+		break;
+	case 14:
+		SetTexture("14card.png", renderer);
+		break;
+	case 15:
+		SetTexture("15card.png", renderer);
+		break;
 	default:
 		break;
 	}

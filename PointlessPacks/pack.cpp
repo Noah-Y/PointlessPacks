@@ -16,7 +16,7 @@ void pack::SetCards(SDL_Renderer *renderer)
 	srand(SDL_GetTicks());
 	for (int num = 0; num < cardAmount; num++)
 	{
-		int randNum = rand() % 8 + 1;
+		int randNum = rand() % 15 + 1;
 		card cardClass;
 		cardClass.SetCardNum(randNum);
 		cardClass.SetCardTexture(renderer);
