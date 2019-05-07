@@ -321,7 +321,6 @@ void game::GetMousePos()
 	cursorPos = { mousePos.x, mousePos.y, 10, 10 };
 }
 
-
 void game::Draw(Object object)
 {
 	SDL_Rect pos = object.GetPos();

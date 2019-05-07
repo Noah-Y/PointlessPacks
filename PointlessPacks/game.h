@@ -51,5 +51,6 @@ public:
 	bool RectCollisionCheck(SDL_Rect object1, SDL_Rect object2);
 	bool CirCollisionCheck(SDL_Rect object1, SDL_Rect object2, int radius1, int radius2);
 	void Draw(Object object);
+	void DrawPtr(Object *object);
 };
 

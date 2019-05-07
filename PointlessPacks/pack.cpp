@@ -8,7 +8,6 @@ pack::pack()
 
 pack::~pack()
 {
-
 }
 
 void pack::SetCards(SDL_Renderer *renderer)
@@ -17,12 +16,13 @@ void pack::SetCards(SDL_Renderer *renderer)
 	for (int num = 0; num < cardAmount; num++)
 	{
 		int randNum = rand() % 15 + 1;
-		card cardClass;
-		cardClass.SetCardNum(randNum);
-		cardClass.SetCardTexture(renderer);
-		cardClass.SetPos( 250, 100, 300, 400 );
-		cardClass.SetCrop(0, 0, 600, 800);
-		cards[num] = cardClass;
-		cardClass.~card();
+		card *cardClass = new card;
+		cardClass->SetCardNum(randNum);
+		cardClass->SetCardTexture(renderer);
+		cardClass->SetPos( 250, 100, 300, 400 );
+		cardClass->SetCrop(0, 0, 600, 800);
+		cards[num] = *cardClass;
+		free(cardClass);
+		cardClass->~card();
 	}
 }

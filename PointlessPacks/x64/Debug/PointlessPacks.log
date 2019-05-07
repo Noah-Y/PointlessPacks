@@ -1,4 +1,9 @@
 ﻿  card.cpp
+  game.cpp
+F:\Coding\PointlessPacks\PointlessPacks\game.cpp(308): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+F:\Coding\PointlessPacks\PointlessPacks\game.cpp(309): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  main.cpp
+  Object.cpp
   pack.cpp
   Generating Code...
-  PointlessPacks.vcxproj -> C:\Users\Noah\Desktop\PointlessPacks\x64\Debug\PointlessPacks.exe
+  PointlessPacks.vcxproj -> F:\Coding\PointlessPacks\x64\Debug\PointlessPacks.exe
